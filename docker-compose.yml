@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ballastlane2024
+    ports:
+      - 27017:27017
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: ballastlaneapp:1.0.5
+    restart: unless-stopped
+    ports:
+      - 8080:8080
